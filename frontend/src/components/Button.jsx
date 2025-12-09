@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // 1. On importe le hook
-import './Button.css';
+import '../styles/Button.css';
 
 const Button = ({
   onClick,
@@ -28,11 +28,7 @@ const Button = ({
   };
 
   return (
-    <button
-      onClick={handleAction}
-      className='btn'
-      style={dynamicStyles}
-    >
+    <button onClick={handleAction} className='btn' style={dynamicStyles}>
       {text}
     </button>
   );
