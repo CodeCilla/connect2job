@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Button from "./Button.jsx";
 import "../styles/Header.css";
 
 const Header = () => {
@@ -73,26 +74,32 @@ const Header = () => {
 
           {/* Mobile-only buttons */}
           <div className="mobile-buttons">
-            <button className="button connect">Se connecter</button>
-            <button className="button subscribe">S'inscrire</button>
+            <Button
+              onClick={() => handleNavigate("/login")}
+              text="Se connecter"
+              className="button connect"
+            />
+            <Button
+              onClick={() => handleNavigate("/register")}
+              text="S'inscrire"
+              className="button subscribe"
+            />
           </div>
         </ul>
       </nav>
 
       {/* Desktop-only buttons */}
       <div className="button-container">
-        <button
-          className="button connect"
+        <Button
           onClick={() => handleNavigate("/login")}
-        >
-          Se connecter
-        </button>
-        <button
-          className="button subscribe"
+          text="Se connecter"
+          className="button connect"
+        />
+        <Button
           onClick={() => handleNavigate("/register")}
-        >
-          S'inscrire
-        </button>
+          text="S'inscrire"
+          className="button subscribe"
+        />
       </div>
     </header>
   );
