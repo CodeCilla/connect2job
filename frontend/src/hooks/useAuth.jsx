@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const currentUser = authService.getCurrentUser();
     setUser(currentUser);
     setLoading(false);
-  }, [setUser]);
+  }, []);
 
   const login = async (email, password) => {
     try {
