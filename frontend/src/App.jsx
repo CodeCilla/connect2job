@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages communes
 import Home from './pages/Home';
+import Login from './pages/login';
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -19,7 +20,7 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route
             path="/login"
-            element={isAuthenticated ? <Navigate to="/" replace /> : {/* page de login */}}
+            element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
           />
 
           {/* Routes pour les étudiants */}
