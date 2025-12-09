@@ -1,0 +1,121 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: var(--space-6);
+}
+
+.login-box {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    width: 100%;
+    max-width: 400px;
+    border: var(--border);
+}
+
+.login-title {
+    color: var(--color-text-title);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.form-group label {
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(102, 34, 34, 0.1);
+}
+
+.login-button {
+    margin-top: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-secondary);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    border: none;
+}
+
+.login-button:hover {
+    background: var(--color-secondary);
+    transform: translateY(-1px);
+}
+
+.register-button {
+    margin-top: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-bg-alt);
+    color: var(--color-text-title);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    border: none;
+}
+
+.divider {
+    margin-top: var(--space-2);
+    border-top: 1px solid #9ca3af44;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+    font-size: 0.875rem;
+    text-align: center;
+    border: 1px solid #fecaca;
+}
+
+.form-group input:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.login-button:disabled,
+.register-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-button:disabled:hover {
+    transform: none;
+}
+
+
