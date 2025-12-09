@@ -63,6 +63,11 @@ function AppRoutes() {
               )
             }
           />
+
+          <Route
+            path="/register"
+            element={isAuthenticated ? <Navigate to="/" replace /> : {/* page d'inscription */}}
+          />
           
           { /* ... */ }
 
