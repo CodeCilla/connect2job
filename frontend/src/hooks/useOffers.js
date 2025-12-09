@@ -6,7 +6,7 @@ export const useOffers = (autoFetch = true) => {
   const { isStudent, isCompany } = useAuth();
 
   const [offers, setOffers] = useState([]);
-  const [currentOffer, setCurrentOffer] = useState(null); // Pour le détail d'une offre
+  const [currentOffer, setCurrentOffer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -75,7 +75,6 @@ export const useOffers = (autoFetch = true) => {
     setLoading(true);
     try {
       const newOffer = await companyService.createOffer(offerData);
-      // On l'ajoute directement à la liste locale pour éviter de recharger tout
       setOffers((prev) => [...prev, newOffer]);
       return { success: true, data: newOffer };
     } catch (err) {
@@ -120,7 +119,6 @@ export const useOffers = (autoFetch = true) => {
     if (!isCompany)
       return { success: false, error: 'Action réservée aux entreprises' };
 
-    // Backup
     const previousOffers = [...offers];
     setOffers((prev) => prev.filter((o) => o.id !== offerId));
 
