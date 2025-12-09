@@ -15,7 +15,6 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* LEFT SIDE: hamburger + logo */}
       <div className="left-side">
         <div
           className={`hamburger ${isOpen ? "open" : ""}`}
@@ -26,7 +25,6 @@ const Header = () => {
           <span></span>
         </div>
 
-        {/* CLICKABLE LOGO */}
         <button onClick={() => handleNavigate("/")} className="logo-button">
           <div className="logo">Connect2Job</div>
         </button>
