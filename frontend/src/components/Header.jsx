@@ -71,35 +71,37 @@ const Header = () => {
               Profil
             </button>
           </li>
-
-          {/* Mobile-only buttons */}
-          <div className="mobile-buttons">
-            <Button
-              onClick={() => handleNavigate("/login")}
-              text="Se connecter"
-              className="button connect"
-            />
-            <Button
-              onClick={() => handleNavigate("/register")}
-              text="S'inscrire"
-              className="button subscribe"
-            />
-          </div>
         </ul>
       </nav>
 
-      {/* Desktop-only buttons */}
-      <div className="button-container">
-        <Button
-          onClick={() => handleNavigate("/login")}
-          text="Se connecter"
-          className="button connect"
-        />
-        <Button
-          onClick={() => handleNavigate("/register")}
-          text="S'inscrire"
-          className="button subscribe"
-        />
+      <div className="right-side">
+        {/* Mobile-only buttons */}
+        <div className="mobile-buttons">
+          <button
+            onClick={() => handleNavigate("/user")}
+            className={location.pathname.includes("/user") ? "active" : ""}
+          >
+            <img src="/images/logoUser.png" alt="user" />
+          </button>
+        </div>
+
+        {/* Desktop-only buttons */}
+        <div className="button-container">
+          <Button
+            onClick={() => handleNavigate("/login")}
+            text="Se connecter"
+            className="button connect"
+            bgColor="#f56c59"
+            textColor="#fff"
+          />
+          <Button
+            onClick={() => handleNavigate("/register")}
+            text="S'inscrire"
+            className="button subscribe"
+            bgColor="#662222"
+            textColor="#fff"
+          />
+        </div>
       </div>
     </header>
   );
