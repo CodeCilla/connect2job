@@ -95,14 +95,14 @@ const Header = () => {
                 onClick={() => handleNavigate("/login")}
                 text="Se connecter"
                 className="button connect"
-                bgColor="#f56c59ff"
+                bgColor="var(--color-secondary)"
                 textColor="#fff"
               />
               <Button
                 onClick={() => handleNavigate("/register")}
                 text="S'inscrire"
                 className="button subscribe"
-                bgColor="#662222"
+                bgColor="var(--color-primary)"
                 textColor="#fff"
               />
             </>
