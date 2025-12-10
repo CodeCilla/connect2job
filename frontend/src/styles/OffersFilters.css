@@ -1,0 +1,43 @@
+/* --- PAR DÉFAUT (MOBILE) --- */
+
+.filter__mobile-view {
+  display: block;
+  position: relative;
+}
+
+.filter__desktop-view {
+  display: none;
+}
+.filter__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.filter__checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  
+  .filter__mobile-view {
+    display: none;
+  }
+
+  .filter__desktop-view {
+    display: block;
+  }
+
+  .filter__checkbox-list {
+    flex-direction: column; 
+    gap: 15px;
+  }
+}
