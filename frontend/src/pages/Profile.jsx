@@ -334,14 +334,14 @@ const Profile = () => {
                 </>
               )}
               {!isEditing && (
-                <Button text="Modifier" bgColor="#662222" textColor="white" onClick={handleEdit}>
+                <Button text="Modifier" bgColor="var(--color-primary)" textColor="white" onClick={handleEdit}>
                 </Button>
               )}
               {isEditing && (
                 <div className="form-actions">
                   <Button
                     text="Enregistrer"
-                    bgColor="#662222" 
+                    bgColor="var(--color-primary)" 
                     textColor="white"
                     onClick={handleSave}
                   >
@@ -382,7 +382,7 @@ const Profile = () => {
         <div className="profile-header">
           <img className="profile-picture" src={ProfilePicture} alt="Photo de profil" />
           <h2>{profile?.name || 'Nom non renseigné'}</h2>
-          <h4>{profile?.title || profile?.position || (isStudent ? 'Étudiant' : 'Entreprise')}</h4>
+          <h4>{isStudent ? 'Étudiant' : 'Entreprise'}</h4>
           {profile?.skills && profile.skills.length > 0 && (
             <div className="skills-list">
               {profile.skills.map((skill, index) => (
