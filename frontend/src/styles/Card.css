@@ -12,14 +12,27 @@
     padding: var(--space-5);
 }*/
 
-
 .card {
     padding: var(--space-5);
     margin: var(--space-5);
     background-color: var(--color-bg-alt);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg) ;
+    border: var(--border);
     background: var(--color-bg);
+    position: relative;
+}
+
+.card__contract-badge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background: var(--color-secondary);
+    color: var(--color-bg);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1;
 }
 
 .card__title {
@@ -64,15 +77,78 @@
     margin-top: var(--space-3);
 }
 
+.card__applications-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: var(--space-4);
+}
+
+.card__applications-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.card__applications-number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.card__actions {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.card__btn {
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 100px;
+}
+
+.card__btn--edit {
+    background: var(--color-primary);
+    color: white;
+}
+
+.card__btn--edit:hover {
+    background: var(--color-secondary);
+}
+
+.card__btn--delete {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.card__btn--delete:hover {
+    background: #fecaca;
+}
 
 @media (min-width: 750px) {
     .card {
-    padding: var(--space-5);
-    margin: var(--space-5);
-    background-color: var(--color-bg-alt);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg) ;
-    background: var(--color-bg);
-    width: 95%;
-}
+        padding: var(--space-5);
+        margin: var(--space-5);
+        background-color: var(--color-bg-alt);
+        border-radius: var(--radius-lg);
+        background: var(--color-bg);
+        width: 95%;
+    }
 }
