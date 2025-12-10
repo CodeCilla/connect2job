@@ -18,19 +18,9 @@
   position: relative;
 }
 
-/* --- Logo (Carré à gauche) - Base Mobile --- */
-.app-card-logo {
-  width: 60px;
-  height: 60px;
-  background-color: #f3f4f6; /* Gris clair placeholder */
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  flex-shrink: 0;
-  margin-bottom: 1rem; /* Espace en mobile */
-}
 
 /* --- Contenu Principal --- */
-.app-card-content {
+.app-card__content {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -38,14 +28,14 @@
 }
 
 /* --- Header de la carte --- */
-.app-card-header {
+.app-card__header {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem;
 }
 
-.app-card-title {
+.app-card__title {
   font-size: 1.1rem;
   font-weight: 700;
   color: #111;
@@ -57,13 +47,13 @@
   font-weight: 500;
 }
 
-.app-card-date {
+.app-card__date {
   color: #9ca3af;
   font-size: 0.85rem;
 }
 
 /* --- Métadonnées (Lieu, Type) --- */
-.app-card-meta {
+.app-card__meta {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -71,14 +61,14 @@
   font-size: 0.9rem;
 }
 
-.meta-item {
+.app-card__meta--item {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
 /* --- Description --- */
-.app-card-description {
+.app-card__description {
   color: #4b5563;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -87,14 +77,14 @@
 }
 
 /* --- Tags (Pills) --- */
-.app-card-tags {
+.app-card__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: auto; /* Pousse vers le bas si la carte est haute */
 }
 
-.tag-pill {
+.app-card__tags--pill {
   background-color: #e5e7eb;
   color: #374151;
   padding: 0.25rem 0.75rem;
@@ -104,7 +94,7 @@
 }
 
 /* --- Statut / Actions (Coin droit ou bas) - Base Mobile --- */
-.app-card-actions {
+.app-card__actions {
   margin-top: 1rem;
   display: flex;
   justify-content: flex-end;
@@ -156,13 +146,7 @@
     gap: 1.5rem;
   }
 
-  /* Reset de la marge du logo */
-  .app-card-logo {
-    margin-bottom: 0;
-  }
-
-  /* Positionnement des actions à droite */
-  .app-card-actions {
+  .app-card__actions {
     margin-top: 0;
     margin-left: auto; /* Pousse à droite sur desktop */
     flex-direction: column;
