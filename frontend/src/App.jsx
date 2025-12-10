@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // Pages communes
 import Home from './pages/Home';
 import Login from './pages/login';
+import Register from './pages/Register';
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -21,6 +22,10 @@ function AppRoutes() {
           <Route
             path="/login"
             element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={isAuthenticated ? <Navigate to="/" replace /> : <Register />}
           />
 
           {/* Routes pour les étudiants */}
@@ -63,6 +68,11 @@ function AppRoutes() {
                 <Navigate to="/login" replace />
               )
             }
+          />
+
+          <Route
+            path="/register"
+            element={isAuthenticated ? <Navigate to="/" replace /> : {/* page d'inscription */}}
           />
           
           { /* ... */ }
