@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
 import Button from '../components/Button';
 import '../styles/Home.css';
 import hommePortrait from '../assets/jeune-homme-barbu-avec-chemise-rayee.jpg';
