@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Profile.css';
 import ProfilePicture from '../assets/profile.jpg';
 import { useProfile } from '../hooks/useProfile';
@@ -8,7 +9,8 @@ import Button from '../components/Button';
 
 const Profile = () => {
   const { profile, loading, error, updateProfile } = useProfile();
-  const { isStudent } = useAuth();
+  const { isStudent, logout } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('applications');
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -125,6 +127,11 @@ const Profile = () => {
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
   };
 
    useEffect(() => {
@@ -392,6 +399,12 @@ const Profile = () => {
               ))}
             </div>
           )}
+          <Button
+            text="Déconnexion"
+            bgColor="#dc2626"
+            textColor="white"
+            onClick={handleLogout}
+          ></Button>
         </div>
         <div className="profile-content">
           <div className="tab-section">
