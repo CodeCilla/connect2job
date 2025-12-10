@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -71,8 +72,12 @@ function AppRoutes() {
           />
 
           <Route
-            path="/register"
-            element={isAuthenticated ? <Navigate to="/" replace /> : {/* page d'inscription */}}
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
           />
           
           { /* ... */ }
