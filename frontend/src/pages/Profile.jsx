@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/Profile.css";
-import ProfilePicture from "../assets/profile.jpg";
-import { useProfile } from "../hooks/useProfile";
-import { useAuth } from "../hooks/useAuth";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Button from "../components/Button";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Profile.css';
+import { useProfile } from '../hooks/useProfile';
+import { useAuth } from '../hooks/useAuth';
+import LoadingSpinner from '../components/LoadingSpinner';
+import ProfileHeader from '../components/profile/ProfileHeader';
+import ProfileTabs from '../components/profile/ProfileTabs';
+import PersonalInfoForm from '../components/profile/PersonalInfoForm';
+import ApplicationsTab from '../components/profile/ApplicationsTab';
+import OffersTab from '../components/profile/OffersTab';
 
 const Profile = () => {
     const { profile, loading, error, updateProfile } = useProfile();
@@ -460,53 +463,55 @@ const Profile = () => {
         }
     };
 
-    return (
-        <div className="profile-container">
-            {error && <div className="error-message">{error}</div>}
-            <div className="profile-main">
-                <div className="profile-header">
-                    <img
-                        className="profile-picture"
-                        src={ProfilePicture}
-                        alt="Photo de profil"
-                    />
-                    <h2>{profile?.name || "Nom non renseigné"}</h2>
-                    <h4>{isStudent ? "Étudiant" : "Entreprise"}</h4>
-                    {profile?.skills && profile.skills.length > 0 && (
-                        <div className="skills-list">
-                            {profile.skills.map((skill, index) => (
-                                <span key={index} className="skill-tag">
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    )}
-                    <Button
-                        text="Déconnexion"
-                        bgColor="#dc2626"
-                        textColor="white"
-                        onClick={handleLogout}
-                    ></Button>
-                </div>
-                <div className="profile-content">
-                    <div className="tab-section">
-                        <ul className="tab-list">
-                            {tabs.map((tab) => (
-                                <li
-                                    key={tab.id}
-                                    className={
-                                        activeTab === tab.id ? "active" : ""
-                                    }
-                                    onClick={() => handleTabChange(tab.id)}
-                                >
-                                    {tab.label}
-                                </li>
-                            ))}
-                        </ul>
-                        {renderTabContent()}
-                    </div>
-                </div>
-            </div>
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'applications':
+        return <ApplicationsTab isStudent={isStudent} />;
+      case 'personal':
+        return (
+          <PersonalInfoForm
+            formData={formData}
+            isStudent={isStudent}
+            isEditing={isEditing}
+            newSkill={newSkill}
+            onFormDataChange={setFormData}
+            onSkillChange={setNewSkill}
+            onAddSkill={handleAddSkill}
+            onRemoveSkill={handleRemoveSkill}
+            onEdit={handleEdit}
+            onSave={handleSave}
+            onCancel={handleCancel}
+          />
+        );
+      case 'offers':
+        return <OffersTab />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="profile-container">
+      {error && (
+        <div className="error-message">
+          {error}
+        </div>
+      )}
+      <div className="profile-main">
+        <ProfileHeader
+          profile={profile}
+          isStudent={isStudent}
+          onLogout={handleLogout}
+        />
+        <div className="profile-content">
+          <div className="tab-section">
+            <ProfileTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              onTabChange={handleTabChange}
+            />
+            {renderTabContent()}
+          </div>
         </div>
     );
 };

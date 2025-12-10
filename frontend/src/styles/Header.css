@@ -6,7 +6,7 @@
   justify-content: center; /* center logo on mobile */
   align-items: center;
   background-color: var(--color-bg);
-  padding: var(--space-4);
+  padding: var(--space-6);
   border-bottom: var(--border);
   position: relative;
   height: 4rem;
@@ -120,7 +120,6 @@
 }
 
 .button-header:hover {
-  background-color: var(--color-bg);
   color: var(--color-secondary);
 }
 
@@ -165,7 +164,18 @@
 /* --- DESKTOP MODE --- */
 @media (min-width: 768px) {
   .header {
-    justify-content: space-between; /* classic header alignment */
+    justify-content: flex-start;
+  }
+
+  .right-side {
+    position: absolute;
+    right: var(--space-6);
+  }
+
+  .profile-image {
+    max-width: 4rem;
+    max-height: 4rem;
+    border-radius: var(--radius-sm);
   }
 
   .hamburger {
