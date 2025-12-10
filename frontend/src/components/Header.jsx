@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button.jsx";
 import "../styles/Header.css";
+import { useAuth } from "../hooks/useAuth.jsx";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ const Header = () => {
     navigate(path);
     setIsOpen(false);
   };
+
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className="header">
@@ -62,15 +65,6 @@ const Header = () => {
               Entreprises
             </button>
           </li>
-
-          <li>
-            <button
-              onClick={() => handleNavigate("/profil")}
-              className={location.pathname.includes("/profil") ? "active" : ""}
-            >
-              Profil
-            </button>
-          </li>
         </ul>
       </nav>
 
@@ -81,26 +75,38 @@ const Header = () => {
             onClick={() => handleNavigate("/user")}
             className={location.pathname.includes("/user") ? "active" : ""}
           >
-            <img src="/images/logoUser.png" alt="user" />
+            <FontAwesomeIcon icon={byPrefixAndName.fas['user']} style={{color: "#f56c59ff",}} />
           </button>
         </div>
 
         {/* Desktop-only buttons */}
         <div className="button-container">
-          <Button
-            onClick={() => handleNavigate("/login")}
-            text="Se connecter"
-            className="button connect"
-            bgColor="#f56c59"
-            textColor="#fff"
-          />
-          <Button
-            onClick={() => handleNavigate("/register")}
-            text="S'inscrire"
-            className="button subscribe"
-            bgColor="#662222"
-            textColor="#fff"
-          />
+          {isAuthenticated && <>
+          <button
+            onClick={() => handleNavigate("/user")}
+            className={location.pathname.includes("/user") ? "active" : ""}
+          >
+            <FontAwesomeIcon icon={byPrefixAndName.fas['user']} style={{color: "#f56c59ff",}} />
+          </button>
+          </>}
+          {!isAuthenticated && (
+            <>
+              <Button
+                onClick={() => handleNavigate("/login")}
+                text="Se connecter"
+                className="button connect"
+                bgColor="#f56c59ff"
+                textColor="#fff"
+              />
+              <Button
+                onClick={() => handleNavigate("/register")}
+                text="S'inscrire"
+                className="button subscribe"
+                bgColor="#662222"
+                textColor="#fff"
+              />
+            </>
+          )}
         </div>
       </div>
     </header>

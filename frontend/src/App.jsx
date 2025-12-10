@@ -6,7 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages communes
 import Home from './pages/Home';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 
 function AppRoutes() {
