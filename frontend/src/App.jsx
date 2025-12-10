@@ -6,8 +6,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages communes
 import Home from './pages/Home';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
+import OffersList from './pages/OffersList';
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -33,7 +34,7 @@ function AppRoutes() {
             path="/offers"
             element={
               <ProtectedRoute requiredRole="STUDENT">
-                {/* pages offres d'emploi */}
+                <OffersList />
               </ProtectedRoute>
             }
           />
