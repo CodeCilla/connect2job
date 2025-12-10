@@ -97,7 +97,7 @@ const Header = () => {
               }`}
               onClick={() => handleNavigate("/profile")}
             >
-              <i className="fa-solid fa-user fa-2xl"></i>
+              <img src="/src/assets/profile.jpg" alt="User Profile" className="profile-image" />
             </button>
           )}
 
