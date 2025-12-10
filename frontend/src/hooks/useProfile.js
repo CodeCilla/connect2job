@@ -38,21 +38,26 @@ export const useProfile = () => {
     fetchProfile();
   }, [isStudent, isAuthenticated]);
 
+  // Fonction de mise à jour (UPDATE)
   const updateProfile = async (formData) => {
     try {
       setError(null);
 
+      // 1. Choix du service
       const service = isStudent ? studentService : companyService;
-      const response = await service.updateProfile(formData);
-      const profileData = isStudent ? response.student : response.company;
 
-      if (!profileData.skills) {
-        profileData.skills = [];
+      // 2. Appel API (PUT)
+      const updatedData = await service.updateProfile(formData);
+
+      // 3. Sécurité tableau ici aussi
+      if (!updatedData.skills) {
+        updatedData.skills = [];
       }
 
-      setProfile(profileData);
+      // 4. Mise à jour de l'état local
+      setProfile(updatedData);
 
-      return { success: true, data: profileData };
+      return { success: true, data: updatedData };
     } catch (err) {
       console.error('Erreur sauvegarde:', err);
       const errorMessage = err.message || 'Erreur lors de la sauvegarde';

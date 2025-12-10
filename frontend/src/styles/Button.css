@@ -2,6 +2,7 @@
   /* ... tes styles de structure existants ... */
   font-family: var(--font-family);
   padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
   cursor: pointer;
 
   /* --- Couleurs --- */
@@ -12,9 +13,6 @@
   border: var(--dynamic-border, none);
 
   transition: all 0.2s ease;
-}
-.btn-icon {
-  margin-left: 1rem;
 }
 
 /* Optionnel : tu peux garder ton hover global */

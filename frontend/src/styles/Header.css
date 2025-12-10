@@ -6,7 +6,7 @@
   justify-content: center; /* center logo on mobile */
   align-items: center;
   background-color: var(--color-bg);
-  padding: var(--space-6);
+  padding: var(--space-4);
   border-bottom: var(--border);
   position: relative;
   height: 4rem;
@@ -108,24 +108,22 @@
 }
 
 /* NORMAL BUTTONS */
-.button-header {
+button {
+  background-color: white;
   color: var(--color-text);
   padding: var(--space-2) var(--space-4);
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: 0.3s;
-    background: none;
-  border: none;
 }
 
-.button-header:hover {
+button:hover {
+  background-color: var(--color-bg);
   color: var(--color-secondary);
 }
 
 .active {
-  background: none;
-  border: none;
   font-weight: bold;
   color: var(--color-secondary);
 }
@@ -137,12 +135,12 @@
   right: var(--space-4);
   position: absolute;
   gap: var(--space-4);
-  top: var(--space-4);
+  top: 0.5rem;
 }
 
 .mobile-buttons img {
-  max-width: 4rem;
-  max-height: 4rem;
+  max-width: 2rem;
+  max-height: 2rem;
   border-radius: var(--radius-sm);
 }
 
@@ -164,18 +162,7 @@
 /* --- DESKTOP MODE --- */
 @media (min-width: 768px) {
   .header {
-    justify-content: flex-start;
-  }
-
-  .right-side {
-    position: absolute;
-    right: var(--space-6);
-  }
-
-  .profile-image {
-    max-width: 4rem;
-    max-height: 4rem;
-    border-radius: var(--radius-sm);
+    justify-content: space-between; /* classic header alignment */
   }
 
   .hamburger {
