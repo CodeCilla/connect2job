@@ -135,12 +135,12 @@ button:hover {
   right: var(--space-4);
   position: absolute;
   gap: var(--space-4);
-  top: 0.5rem;
+  top: var(--space-4);
 }
 
 .mobile-buttons img {
-  max-width: 2rem;
-  max-height: 2rem;
+  max-width: 4rem;
+  max-height: 4rem;
   border-radius: var(--radius-sm);
 }
 

@@ -75,7 +75,7 @@ const Header = () => {
             onClick={() => handleNavigate("/user")}
             className={location.pathname.includes("/user") ? "active" : ""}
           >
-            <FontAwesomeIcon icon={byPrefixAndName.fas['user']} style={{color: "#f56c59ff",}} />
+            <i className="fa-solid fa-user fa-2xl"></i>
           </button>
         </div>
 
@@ -86,7 +86,7 @@ const Header = () => {
             onClick={() => handleNavigate("/user")}
             className={location.pathname.includes("/user") ? "active" : ""}
           >
-            <FontAwesomeIcon icon={byPrefixAndName.fas['user']} style={{color: "#f56c59ff",}} />
+            <i className="fa-solid fa-user fa-2xl"></i>
           </button>
           </>}
           {!isAuthenticated && (
