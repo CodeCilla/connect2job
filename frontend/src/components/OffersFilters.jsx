@@ -19,7 +19,7 @@ const OffersFilters = ({ onFilter }) => {
     { id: 'Freelance', label: 'Freelance' },
   ];
 
-  // Gestion du clic extérieur (pour fermer le dropdown mobile)
+  // Gestion du clic extérieur
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -54,37 +54,60 @@ const OffersFilters = ({ onFilter }) => {
     e.preventDefault();
   };
 
+  // --- OPTIMISATION : Fonction de rendu réutilisable ---
+  // On passe un 'prefixId' ('mob' ou 'desk') pour garantir des clés uniques React
+  const renderContractList = (prefixId) => (
+    <div className='filter__checkbox-list'>
+      {contractOptions.map((option) => (
+        <label key={`${prefixId}-${option.id}`} className='checkbox-item'>
+          <input
+            type='checkbox'
+            value={option.id}
+            checked={filters.contractTypes.includes(option.id)}
+            onChange={handleCheckboxChange}
+          />
+          <span style={{ marginLeft: '8px' }}>{option.label}</span>
+        </label>
+      ))}
+    </div>
+  );
+
   return (
-    <form className='filter' onSubmit={handleSubmit}>
+    <div className='filter' onSubmit={handleSubmit}>
       {/* 1. RECHERCHE */}
       <div className='filter__search'>
+        <label className='filter__label' htmlFor="keyword">Recherche par mots-clés</label>
         <i className='fa-solid fa-magnifying-glass input-icon filter__icon'></i>
         <input
           type='text'
           name='keyword'
+          id='keyword'
           placeholder='Poste, mot-clé'
           value={filters.keyword}
           onChange={handleInputChange}
           className='filter__input'
         />
       </div>
+
       {/* 2. LOCALISATION */}
       <div className='filter__search'>
+        <label className='filter__label' htmlFor="location">Recherche par ville</label>
         <i className='fa-solid fa-location-dot input-icon filter__icon'></i>
         <input
           type='text'
           name='location'
+          id='location'
           placeholder='Ville'
           value={filters.location}
           onChange={handleInputChange}
           className='filter__input'
         />
       </div>
+
       {/* 3. SECTION CONTRATS */}
-      {/* On ouvre le wrapper ici et on ne le ferme qu'à la toute fin */}
       <div className='filter__dropdown-wrapper' ref={dropdownRef}>
-        {/* === VERSION MOBILE (Bouton + Dropdown) === */}
-        {/* On ajoute une classe pour pouvoir le cacher en CSS sur Desktop */}
+        
+        {/* === VERSION MOBILE === */}
         <div className='filter__mobile-view'>
           <Button
             text='Contrat'
@@ -93,54 +116,27 @@ const OffersFilters = ({ onFilter }) => {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             fullWidth={false}
             icon={
-              <i
-                className={`fa-solid fa-chevron-${
-                  isDropdownOpen ? 'up' : 'down'
-                }`}
-              ></i>
+              <i className={`fa-solid fa-chevron-${isDropdownOpen ? 'up' : 'down'}`}></i>
             }
-            type='button'
           />
 
           {isDropdownOpen && (
             <div className='filter__dropdown-menu'>
-              <div className='filter__checkbox-list'>
-                {contractOptions.map((option) => (
-                  <label key={`mob-${option.id}`} className='checkbox-item'>
-                    <input
-                      type='checkbox'
-                      value={option.id}
-                      checked={filters.contractTypes.includes(option.id)}
-                      onChange={handleCheckboxChange} // Attention: onChange, pas onClick
-                    />
-                    <span>{option.label}</span>
-                  </label>
-                ))}
-              </div>
+              {/* Appel de la fonction réutilisable avec le préfixe 'mob' */}
+              {renderContractList('mob')}
             </div>
           )}
         </div>
 
-        {/* === VERSION DESKTOP (Liste à plat) === */}
-        {/* On ajoute une classe pour pouvoir le cacher en CSS sur Mobile */}
+        {/* === VERSION DESKTOP === */}
         <div className='filter__desktop-view'>
           <label className='filter__label'>Type de contrat</label>
-          <div className='filter__checkbox-list'>
-            {contractOptions.map((option) => (
-              <label key={`desk-${option.id}`} className='checkbox-item'>
-                <input
-                  type='checkbox'
-                  value={option.id}
-                  checked={filters.contractTypes.includes(option.id)}
-                  onChange={handleCheckboxChange}
-                />
-                <span style={{ marginLeft: '8px' }}>{option.label}</span>
-              </label>
-            ))}
-          </div>
+          {/* Appel de la fonction réutilisable avec le préfixe 'desk' */}
+          {renderContractList('desk')}
         </div>
+
       </div>
-    </form>
+    </div>
   );
 };
 
