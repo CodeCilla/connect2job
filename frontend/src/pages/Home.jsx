@@ -1,4 +1,4 @@
-import Button from '../components/Button';
+import OffersFilters from '../components/OffersFilters';
 const Home = () => {
   return (
     <>
