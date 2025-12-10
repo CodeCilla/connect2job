@@ -1,13 +1,8 @@
-import Button from '../components/Button';
+import OffersFilters from '../components/OffersFilters';
 const Home = () => {
   return (
     <>
-      <Button
-        text="Aller à l'accueil"
-        to='/home'
-        bgColor='var(--color-secondary)'
-        textColor='#fff'
-      />
+      <OffersFilters />
     </>
   );
 };
