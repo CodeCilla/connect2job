@@ -9,6 +9,7 @@ const Button = ({
   textColor,
   to,
   fullWidth = false,
+  icon,
 }) => {
   const navigate = useNavigate();
 
@@ -29,7 +30,8 @@ const Button = ({
 
   return (
     <button onClick={handleAction} className='btn' style={dynamicStyles}>
-      {text}
+      <span>{text}</span>
+      {icon && <span className='btn-icon'>{icon}</span>}
     </button>
   );
 };
