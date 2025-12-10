@@ -8,6 +8,16 @@ import { AuthProvider, useAuth } from "./hooks/useAuth";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
+import { AuthProvider, useAuth } from "./hooks/useAuth";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages communes
 import Home from "./pages/Home";
@@ -18,6 +28,7 @@ import Offre from "./pages/Offre";
 import CreateOffer from "./pages/CreateOffer";
 
 function AppRoutes() {
+    const { isAuthenticated, isStudent, isCompany } = useAuth();
     const { isAuthenticated, isStudent, isCompany } = useAuth();
 
     return (
