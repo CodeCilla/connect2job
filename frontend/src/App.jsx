@@ -16,6 +16,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Offre from "./pages/Offre";
 import CreateOffer from "./pages/CreateOffer";
+import OffersList from './pages/OffersList';
 
 function AppRoutes() {
     const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -48,23 +49,17 @@ function AppRoutes() {
                         }
                     />
 
-                    {/* Routes pour les étudiants */}
-                    <Route
-                        path="/offers"
-                        element={
-                            <ProtectedRoute requiredRole="STUDENT">
-                                {/* pages offres d'emploi */}
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/offre/:id"
-                        element={
-                            <ProtectedRoute requiredRole="STUDENT">
-                                <Offre />
-                            </ProtectedRoute>
-                        }
-                    />
+          {/* Routes pour les étudiants */}
+          <Route
+            path="/offers"
+            element={
+              <ProtectedRoute requiredRole="STUDENT">
+                <OffersList />
+              </ProtectedRoute>
+            }
+          />
+          
+          { /* ... */ }
 
                     {/* Routes pour les entreprises */}
                     <Route

@@ -1,0 +1,69 @@
+.OffersPageWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.OffersPageWrapper h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: capitalize;
+  color: var(--color-primary);
+}
+
+.OffersPageWrapper p {
+  color: var(--color-secondary);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  /* === WRAPPER GLOBAL === */
+  .OffersPageWrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Inter", sans-serif;
+  }
+
+  .OffersPageWrapper h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    text-transform: capitalize;
+    color: var(--color-primary);
+  }
+
+  .OffersPageWrapper p {
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
+
+  /* === GRID PRINCIPAL === */
+  .OffersLayout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* === BLOC FILTRES === */
+  .FiltersOffers {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #eee;
+
+    /* pour que ça reste visible quand on scroll */
+    position: sticky;
+    top: 20px;
+  }
+
+  /* === LISTE DES OFFRES === */
+  .OffersList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
