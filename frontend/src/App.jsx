@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Offre from "./pages/Offre";
+import CreateOffer from "./pages/CreateOffer";
 
 function AppRoutes() {
     const { isAuthenticated, isStudent, isCompany } = useAuth();
@@ -64,7 +65,6 @@ function AppRoutes() {
                             </ProtectedRoute>
                         }
                     />
-                    {/* ... */}
 
                     {/* Routes pour les entreprises */}
                     <Route
@@ -75,8 +75,14 @@ function AppRoutes() {
                             </ProtectedRoute>
                         }
                     />
-
-                    {/* ... */}
+                    <Route
+                        path="/offers/create"
+                        element={
+                            <ProtectedRoute requiredRole="COMPANY">
+                                <CreateOffer />
+                            </ProtectedRoute>
+                        }
+                    />
 
                     {/* Routes partagées - redirigent vers le bon composant selon le rôle */}
                     <Route
@@ -104,8 +110,6 @@ function AppRoutes() {
                             </ProtectedRoute>
                         }
                     />
-
-                    {/* ... */}
 
                     {/* Route 404 */}
                     <Route path="*" element={<>{/* à implémenter */}</>} />
