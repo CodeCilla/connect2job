@@ -1,0 +1,67 @@
+.button__offre {
+    display: flex;
+    justify-content: start;
+    padding: var(--space-5);
+}
+
+.company {
+    margin: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg) ;
+    background: var(--color-bg);
+}
+
+.company__statut {
+    display: flex;
+    justify-content: end;
+}
+
+.company__title {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.company__title img {
+    width: var(--space-10);
+    height: var(--space-10);
+    margin-right: var(--space-5);
+}
+
+.company__title h2 {
+    font-size: var(--space-4);
+}
+
+.company__description {
+    margin-bottom: var(--space-5);
+}
+
+.company__location {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.company__location h3 {
+    font-size: var(--space-4);
+    font-weight: 200;
+}
+
+.offre {
+    margin: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg) ;
+    background: var(--color-bg);
+    word-break: break-word;
+}
+
+.offre h2{
+    margin-bottom: var(--space-5);
+}

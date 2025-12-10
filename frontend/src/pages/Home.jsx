@@ -2,8 +2,13 @@ import Button from '../components/Button';
 import '../styles/Home.css';
 import hommePortrait from '../assets/jeune-homme-barbu-avec-chemise-rayee.jpg';
 import femmePortrait from '../assets/portrait-d-une-jeune-femme-d-affaires-tenant-des-lunettes-a-la-main-sur-fond-gris.jpg';
+import Offre from './Offre';
+import { useOffers } from '../hooks/useOffers';
+import { useEffect } from 'react';
 
 const Home = () => {
+
+const {offers} = useOffers();
 
 
   return (
@@ -29,6 +34,10 @@ const Home = () => {
             />
           </div>
         </div>
+      </section>
+
+      <section>
+        <Offre offer={offers[0]}/>
       </section>
 
       <section className="home__stats">

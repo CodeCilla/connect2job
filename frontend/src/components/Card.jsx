@@ -1,11 +1,8 @@
 import "../styles/Card.css";
 import logo from "../assets/acf-logo.png";
-import { useOffers } from "../hooks/useOffers";
-import { useEffect, useState } from "react";
 
 const Card = ({offer}) => {
 
-  console.log(offer);
 
   return (
 
