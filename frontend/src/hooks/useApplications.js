@@ -93,8 +93,8 @@ export const useApplications = (autoFetch = true) => {
     applications,
     loading,
     error,
-    fetchApplications, // Exposé pour pouvoir rafraîchir manuellement (bouton refresh)
-    submitApplication, // Fonction pour l'étudiant
-    updateStatus, // Fonction pour l'entreprise
+    fetchApplications,
+    submitApplication, 
+    updateStatus, 
   };
 };
