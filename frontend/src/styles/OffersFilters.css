@@ -1,0 +1,70 @@
+/* --- PAR DÉFAUT (MOBILE) --- */
+
+.filter {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  gap: var(--space-3);
+}
+
+.filter_search {
+  margin: 2rem auto;
+}
+
+.filter__label {
+  display: none;
+}
+.filter__icon {
+  margin-right: var(--space-2);
+  color: var(--color-text);
+}
+.filter__mobile-view {
+  display: block;
+  position: relative;
+}
+
+.filter__desktop-view {
+  display: none;
+}
+
+.filter__checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .filter {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .filter__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .filter__icon {
+    display: none;
+  }
+
+  .filter__mobile-view {
+    display: none;
+  }
+
+  .filter__desktop-view {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter__checkbox-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

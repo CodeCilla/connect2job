@@ -8,6 +8,10 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+<<<<<<< Updated upstream
+=======
+import Profile from './pages/Profile';
+>>>>>>> Stashed changes
 import OffersList from './pages/OffersList';
 
 function AppRoutes() {
