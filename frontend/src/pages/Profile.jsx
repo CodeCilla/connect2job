@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Profile.css';
-import ProfilePicture from '../assets/profile.jpg';
 import { useProfile } from '../hooks/useProfile';
 import { useAuth } from '../hooks/useAuth';
 import LoadingSpinner from '../components/LoadingSpinner';
-import Button from '../components/Button';
+import ProfileHeader from '../components/profile/ProfileHeader';
+import ProfileTabs from '../components/profile/ProfileTabs';
+import PersonalInfoForm from '../components/profile/PersonalInfoForm';
+import ApplicationsTab from '../components/profile/ApplicationsTab';
+import OffersTab from '../components/profile/OffersTab';
 
 const Profile = () => {
   const { profile, loading, error, updateProfile } = useProfile();
@@ -184,195 +187,25 @@ const Profile = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'applications':
-        return (
-          <div className="tab-content">
-            <h3>{isStudent ? 'Mes candidatures' : 'Candidatures reçues'}</h3>
-            <p className="empty-state">Aucune candidature pour le moment</p>
-          </div>
-        );
+        return <ApplicationsTab isStudent={isStudent} />;
       case 'personal':
         return (
-          <div className="tab-content">
-            <h3>Informations de base</h3>
-            <div className="info-form">
-              <div className="form-field">
-                <label htmlFor="name">Nom</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  disabled={!isEditing}
-                />
-              </div>
-              {isStudent ? (
-                <>
-                  <div className="form-field">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      disabled
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="cvLink">Lien CV</label>
-                    <input
-                      type="url"
-                      id="cvLink"
-                      value={formData.cvLink}
-                      onChange={(e) => setFormData({ ...formData, cvLink: e.target.value })}
-                      disabled={!isEditing}
-                      placeholder="https://..."
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="githubLink">Lien GitHub</label>
-                    <input
-                      type="url"
-                      id="githubLink"
-                      value={formData.githubLink}
-                      onChange={(e) => setFormData({ ...formData, githubLink: e.target.value })}
-                      disabled={!isEditing}
-                      placeholder="https://github.com/..."
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="portfolioLink">Lien Portfolio</label>
-                    <input
-                      type="url"
-                      id="portfolioLink"
-                      value={formData.portfolioLink}
-                      onChange={(e) => setFormData({ ...formData, portfolioLink: e.target.value })}
-                      disabled={!isEditing}
-                      placeholder="https://..."
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="skills">Compétences</label>
-                {isEditing ? (
-                  <div className="skills-input-container">
-                    <div className="skills-tags">
-                      {formData.skills.map((skill, index) => (
-                        <span key={index} className="skill-tag-editable">
-                          {skill}
-                          <button
-                            type="button"
-                            className="skill-remove"
-                            onClick={() => handleRemoveSkill(index)}
-                            aria-label="Supprimer"
-                          >
-                            ×
-                          </button>
-                        </span>
-                      ))}
-                    </div>
-                    <div className="skill-add-container">
-                      <input
-                        type="text"
-                        id="newSkill"
-                        value={newSkill}
-                        onChange={(e) => setNewSkill(e.target.value)}
-                        placeholder="Compétences..."
-                      />
-                      <Button
-                        text="Ajouter"
-                        bgColor="#F56C59" 
-                        textColor="white"
-                        type="button"
-                        className="skill-add-button"
-                        onClick={handleAddSkill}
-                      >
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="skills-display">
-                    {formData.skills.length > 0 ? (
-                      formData.skills.map((skill, index) => (
-                        <span key={index} className="skill-tag">
-                          {skill}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="no-skills">Aucune compétence renseignée</span>
-                    )}
-                  </div>
-                )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="form-field">
-                    <label htmlFor="description">Description</label>
-                    <textarea
-                      id="description"
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      disabled={!isEditing}
-                      rows="4"
-                      placeholder="Décrivez votre entreprise..."
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="website">Site web</label>
-                    <input
-                      type="url"
-                      id="website"
-                      value={formData.website}
-                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                      disabled={!isEditing}
-                      placeholder="https://..."
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="location">Localisation</label>
-                    <input
-                      type="text"
-                      id="location"
-                      value={formData.location}
-                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      disabled={!isEditing}
-                      placeholder="Localisation"
-                    />
-                  </div>
-                </>
-              )}
-              {!isEditing && (
-                <Button text="Modifier" bgColor="var(--color-primary)" textColor="white" onClick={handleEdit}>
-                </Button>
-              )}
-              {isEditing && (
-                <div className="form-actions">
-                  <Button
-                    text="Enregistrer"
-                    bgColor="var(--color-primary)" 
-                    textColor="white"
-                    onClick={handleSave}
-                  >
-                  </Button>
-                  <Button
-                    text="Annuler"
-                    bgColor="#FBF3EA" 
-                    textColor="#662222"
-                    onClick={handleCancel}
-                  >
-                    Annuler
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
+          <PersonalInfoForm
+            formData={formData}
+            isStudent={isStudent}
+            isEditing={isEditing}
+            newSkill={newSkill}
+            onFormDataChange={setFormData}
+            onSkillChange={setNewSkill}
+            onAddSkill={handleAddSkill}
+            onRemoveSkill={handleRemoveSkill}
+            onEdit={handleEdit}
+            onSave={handleSave}
+            onCancel={handleCancel}
+          />
         );
       case 'offers':
-        return (
-          <div className="tab-content">
-            <h3>Mes offres d'emploi</h3>
-            <p className="empty-state">Aucune offre créée pour le moment</p>
-          </div>
-        );
+        return <OffersTab />;
       default:
         return null;
     }
@@ -386,39 +219,18 @@ const Profile = () => {
         </div>
       )}
       <div className="profile-main">
-        <div className="profile-header">
-          <img className="profile-picture" src={ProfilePicture} alt="Photo de profil" />
-          <h2>{profile?.name || 'Nom non renseigné'}</h2>
-          <h4>{isStudent ? 'Étudiant' : 'Entreprise'}</h4>
-          {profile?.skills && profile.skills.length > 0 && (
-            <div className="skills-list">
-              {profile.skills.map((skill, index) => (
-                <span key={index} className="skill-tag">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          )}
-          <Button
-            text="Déconnexion"
-            bgColor="#dc2626"
-            textColor="white"
-            onClick={handleLogout}
-          ></Button>
-        </div>
+        <ProfileHeader
+          profile={profile}
+          isStudent={isStudent}
+          onLogout={handleLogout}
+        />
         <div className="profile-content">
           <div className="tab-section">
-            <ul className="tab-list">
-              {tabs.map((tab) => (
-                <li
-                  key={tab.id}
-                  className={activeTab === tab.id ? 'active' : ''}
-                  onClick={() => handleTabChange(tab.id)}
-                >
-                  {tab.label}
-                </li>
-              ))}
-            </ul>
+            <ProfileTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              onTabChange={handleTabChange}
+            />
             {renderTabContent()}
           </div>
         </div>
