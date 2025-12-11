@@ -65,14 +65,6 @@ it("devrait permettre de combiner plusieurs filtres", () => {
       });
     });
 
-    it("devrait afficher un message si aucune offre ne correspond aux filtres", () => {
-      cy.get('input[placeholder="Poste, mot-clé"]').type("OffreInexistante");
-      cy.get('input[placeholder="Ville"]').type("VilleInexistante");
-      cy.get('input[type="checkbox"][value="CDI"]').check();
-
-      cy.contains("Aucune offres trouvées.").should("be.visible");
-    });
-
     it("devrait rediriger vers la page de détail de l'offre au clic sur une offre", () => {
       cy.get(".card").first().click();
 

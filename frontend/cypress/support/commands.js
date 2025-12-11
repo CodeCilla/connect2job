@@ -41,3 +41,47 @@ Cypress.Commands.add('logout', () => {
   window.localStorage.removeItem('token');
   window.localStorage.removeItem('user');
 });
+
+// Commande pour créer une offre (nécessite d'être connecté en tant qu'entreprise)
+Cypress.Commands.add('createOffer', (offerData) => {
+  const token = window.localStorage.getItem('token');
+  const baseUrl = Cypress.env('API_BASE_URL') || 'https://ekod-dev-interface-tp4-backend-production.up.railway.app/api/group1';
+  
+  return cy.request({
+    method: 'POST',
+    url: `${baseUrl}/companies/offers`,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: offerData || {
+      title: 'Offre de test Cypress',
+      description: 'Description de test pour les tests Cypress',
+      contractType: 'CDI',
+      location: 'Paris',
+      keywords: ['React', 'Node.js', 'TypeScript']
+    },
+    failOnStatusCode: false
+  }).then((response) => {
+    if (response.status === 201 || response.status === 200) {
+      return response.body.offer || response.body;
+    } else {
+      throw new Error(`Erreur lors de la création de l'offre: ${response.status}`);
+    }
+  });
+});
+
+// Commande pour supprimer une offre
+Cypress.Commands.add('deleteOffer', (offerId) => {
+  const token = window.localStorage.getItem('token');
+  const baseUrl = Cypress.env('API_BASE_URL') || 'https://ekod-dev-interface-tp4-backend-production.up.railway.app/api/group1';
+  
+  return cy.request({
+    method: 'DELETE',
+    url: `${baseUrl}/companies/offers/${offerId}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
+    failOnStatusCode: false
+  });
+});
