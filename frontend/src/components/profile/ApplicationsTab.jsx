@@ -7,6 +7,7 @@ import '../../styles/profile/ApplicationsTab.css';
 const STATUS_LABELS = {
   RECEIVED: 'Reçue',
   IN_REVIEW: 'En revue',
+  INTERVIEW: 'Entretien',
   ACCEPTED: 'Acceptée',
   REJECTED: 'Refusée',
 };
@@ -36,7 +37,7 @@ const ApplicationCard = ({
   isCompany,
   onUpdateStatus,
 }) => {
-  const { offer, student, status, createdAt } = application;
+  const { offer, student, status, createdAt, coverLetter } = application;
 
   // --- LOGIQUE D'AFFICHAGE --- //
 
@@ -74,19 +75,7 @@ const ApplicationCard = ({
         {/* EN-TÊTE : PROFIL / OFFRE */}
         <header className='app-card__header'>
           <div className='app-card__title-row'>
-            <h3 className='app-card__title'>{displayTitle}</h3>
-
-            {/* Si Entreprise : Le lien CV est direct à côté du nom */}
-            {isCompany && student?.cvLink && (
-              <Button
-                onClick={() =>
-                  window.open(student?.cvLink, '_blank', 'noopener,noreferrer')
-                }
-                text='Voir le CV'
-                bgColor='var(--color-primary)'
-                textColor='#fff'
-              />
-            )}
+            <h4 className='app-card__title'>{displayTitle}</h4>
           </div>
 
           <div className='app-card__subtitle-wrapper'>{displaySubtitle}</div>
@@ -134,7 +123,7 @@ const ApplicationCard = ({
         )}
 
         {isCompany && (
-          <div className='app-card__actions-wrapper'>
+          <div>
             {/* Badge visuel coloré */}
             <div className={`status-dot ${getStatusClass(status)}`}></div>
 
@@ -145,11 +134,47 @@ const ApplicationCard = ({
             >
               <option value='RECEIVED'>{STATUS_LABELS.RECEIVED}</option>
               <option value='IN_REVIEW'>{STATUS_LABELS.IN_REVIEW}</option>
+              <option value='INTERVIEW'>{STATUS_LABELS.INTERVIEW}</option>
               <option value='ACCEPTED'>{STATUS_LABELS.ACCEPTED}</option>
               <option value='REJECTED'>{STATUS_LABELS.REJECTED}</option>
             </select>
           </div>
         )}
+        <div className='app-card__buttons'>
+          {(() => {
+            const targetLink = isCompany
+              ? student?.cvLink
+              : `/offers/${offer?.id}`;
+            const buttonText = isCompany ? 'Voir le CV' : "Voir l'annonce";
+
+            // Si aucun lien n'existe pour le cas donné, on n'affiche rien
+            if (!targetLink) return null;
+
+            return (
+              <Button
+                onClick={() =>
+                  window.open(targetLink, '_blank', 'noopener,noreferrer')
+                }
+                text={buttonText}
+                bgColor='var( --color-bg-alt)'
+                textColor='var(--color-primary)'
+              />
+            );
+          })()}
+          {isCompany && coverLetter && (
+            <Button
+              onClick={() =>
+                window.open(coverLetter, '_blank', 'noopener,noreferrer')
+              }
+              text='Lettre de motivation'
+              bgColor='var( --color-bg-alt)' /* Fond blanc pour différencier */
+              textColor='var(--color-primary)' /* Texte couleur primaire */
+              style={{
+                border: '1px solid var(--color-primary)',
+              }} /* Bordure optionnelle */
+            />
+          )}
+        </div>
       </div>
     </article>
   );
@@ -163,10 +188,8 @@ const ApplicationsTab = () => {
   if (error) return <div className='error-state'>Erreur : {error}</div>;
 
   return (
-    <div className='applications-page'>
-      <h3 className='page-title' style={{ marginBottom: '1.5rem' }}>
-        {isStudent ? 'Mes candidatures' : 'Gestion des candidatures'}
-      </h3>
+    <div className='tab-content'>
+      <h3>{isStudent ? 'Mes candidatures' : 'Gestion des candidatures'}</h3>
       <div className='applications-list'>
         {applications.length === 0 ? (
           <p className='empty-state'>Aucune candidature trouvée.</p>
