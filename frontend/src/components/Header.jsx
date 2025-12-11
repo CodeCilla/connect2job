@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button.jsx";
 import "../styles/Header.css";
 import { useAuth } from "../hooks/useAuth.jsx";
-import profileImage from "../assets/profile.jpg";
+import profileImage from "/images/profile.jpg";
 
 const Header = () => {
   const navigate = useNavigate();

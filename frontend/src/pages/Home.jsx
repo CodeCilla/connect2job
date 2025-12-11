@@ -134,56 +134,56 @@ const Home = () => {
                         <div className="slider__track">
                             <div className="partner">
                                 <img
-                                    src="/src/assets/Accor_Logo.png"
+                                    src="/images/Accor_Logo.png"
                                     alt="Accor"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/amazon-mobile-logo.png"
+                                    src="/images/amazon-mobile-logo.png"
                                     alt="Amazon"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/apple-logo.svg"
+                                    src="/images/apple-logo.svg"
                                     alt="Apple"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/afterpay-logo.svg"
+                                    src="/images/afterpay-logo.svg"
                                     alt="Afterpay"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/acf-logo.png"
+                                    src="/images/acf-logo.png"
                                     alt="ACF"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/aioseo-client-logo-4.svg"
+                                    src="/images/aioseo-client-logo-4.svg"
                                     alt="Client 1"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/aioseo-client-logo-11.svg"
+                                    src="/images/aioseo-client-logo-11.svg"
                                     alt="Client 2"
                                     className="partner-logo"
                                 />
                             </div>
                             <div className="partner">
                                 <img
-                                    src="/src/assets/aioseo-client-logo-11.svg"
+                                    src="/images/aioseo-client-logo-11.svg"
                                     alt="Client 2"
                                     className="partner-logo"
                                 />
