@@ -15,7 +15,7 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isStudent, isCompany } = useAuth();
 
   return (
     <header className="header">
@@ -37,7 +37,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* NAVIGATION */}
       <nav className="desktop-nav">
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li>
@@ -51,44 +50,94 @@ const Header = () => {
             </button>
           </li>
 
-          <li>
-            <button
-              className={`button-header ${
-                location.pathname.includes("/offers") ? "active" : ""
-              }`}
-              onClick={() => handleNavigate("/offers")}
-            >
-              Offres d'emploi
-            </button>
-          </li>
+          {isStudent && (
+            <li>
+              <button
+                className={`button-header ${
+                  location.pathname.includes("/offers") ? "active" : ""
+                }`}
+                onClick={() => handleNavigate("/offers")}
+              >
+                Offres d'emploi
+              </button>
+            </li>
+          )}
 
-          <li>
-            <button
-              className={`button-header ${
-                location.pathname.includes("/my-offers") ? "active" : ""
-              }`}
-              onClick={() => handleNavigate("/my-offers")}
-            >
-              Entreprises
-            </button>
-          </li>
+          {isCompany && (
+            <>
+              <li>
+                <button
+                  className={`button-header ${
+                    location.pathname.includes("/profile") ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/profile")}
+                >
+                  Mes offres
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button-header ${
+                    location.pathname.includes("/offers/create") ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/offers/create")}
+                >
+                  Créer une offre
+                </button>
+              </li>
+            </>
+          )}
+
+          {!isAuthenticated && (
+            <>
+              <li>
+                <button
+                  className={`button-header ${
+                    location.pathname.includes("/offers") ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/login")}
+                >
+                  Offres d'emploi
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button-header ${
+                    location.pathname.includes("/entreprises") ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/login")}
+                >
+                  Entreprises
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
 
       <div className="right-side">
-        {/* Mobile-only buttons */}
         <div className="mobile-buttons">
-          <button
-            className={`button-header ${
-              location.pathname.includes("/profile") ? "active" : ""
-            }`}
-            onClick={() => handleNavigate("/profile")}
-          >
-            <i className="fa-solid fa-user fa-2xl"></i>
-          </button>
+          {isAuthenticated ? (
+            <button
+              className={`button-header ${
+                location.pathname.includes("/profile") ? "active" : ""
+              }`}
+              onClick={() => handleNavigate("/profile")}
+            >
+              <i className="fa-solid fa-user fa-2xl"></i>
+            </button>
+          ) : (
+            <>
+              <button
+                className="button-header"
+                onClick={() => handleNavigate("/login")}
+              >
+                <i className="fa-solid fa-sign-in-alt fa-2xl"></i>
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Desktop-only buttons */}
         <div className="button-container">
           {isAuthenticated && (
             <button

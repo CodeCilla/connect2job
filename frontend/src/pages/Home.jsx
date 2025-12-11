@@ -1,31 +1,84 @@
 import Button from "../components/Button";
 import "../styles/Home.css";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import hommePortrait from "../assets/jeune-homme-barbu-avec-chemise-rayee.jpg";
 import femmePortrait from "../assets/portrait-d-une-jeune-femme-d-affaires-tenant-des-lunettes-a-la-main-sur-fond-gris.jpg";
 
 const Home = () => {
+    const { isAuthenticated, isStudent, isCompany } = useAuth();
+    const navigate = useNavigate();
+
     return (
         <main className="home">
             <section className="home__hero">
                 <div className="home__hero-inner">
-                    <h1 className="home__title">
-                        Trouvez votre <br />
-                        <span>opportunité</span> idéale
-                    </h1>
-                    <div className="home__cta">
-                        <Button
-                            text="Trouvez votre entreprise"
-                            to="/entreprises"
-                            bgColor="var(--color-secondary)"
-                            textColor="#fff"
-                        />
-                        <Button
-                            text="Trouvez votre alternant"
-                            to="/alternants"
-                            bgColor="#FBF3EA"
-                            textColor="var(--color-secondary)"
-                        />
-                    </div>
+                    {!isAuthenticated && (
+                        <>
+                            <h1 className="home__title">
+                                Trouvez votre <br />
+                                <span>opportunité</span> idéale
+                            </h1>
+                            <div className="home__cta">
+                                <Button
+                                    text="Trouvez votre entreprise"
+                                    onClick={() => navigate("/register")}
+                                    bgColor="var(--color-secondary)"
+                                    textColor="#fff"
+                                />
+                                <Button
+                                    text="Trouvez votre alternant"
+                                    onClick={() => navigate("/register")}
+                                    bgColor="#FBF3EA"
+                                    textColor="var(--color-secondary)"
+                                />
+                            </div>
+                        </>
+                    )}
+                    {isStudent && (
+                        <>
+                            <h1 className="home__title">
+                                Trouvez votre <br />
+                                <span>alternance</span> idéale
+                            </h1>
+                            <div className="home__cta">
+                                <Button
+                                    text="Voir les offres d'emploi"
+                                    onClick={() => navigate("/offers")}
+                                    bgColor="var(--color-secondary)"
+                                    textColor="#fff"
+                                />
+                                <Button
+                                    text="Mon profil"
+                                    onClick={() => navigate("/profile")}
+                                    bgColor="#FBF3EA"
+                                    textColor="var(--color-secondary)"
+                                />
+                            </div>
+                        </>
+                    )}
+                    {isCompany && (
+                        <>
+                            <h1 className="home__title">
+                                Trouvez votre <br />
+                                <span>alternant</span> idéal
+                            </h1>
+                            <div className="home__cta">
+                                <Button
+                                    text="Publier une offre"
+                                    onClick={() => navigate("/offers/create")}
+                                    bgColor="var(--color-secondary)"
+                                    textColor="#fff"
+                                />
+                                <Button
+                                    text="Mes offres"
+                                    onClick={() => navigate("/my-offers")}
+                                    bgColor="#FBF3EA"
+                                    textColor="var(--color-secondary)"
+                                />
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
             <section className="home__stats">

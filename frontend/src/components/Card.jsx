@@ -1,6 +1,7 @@
 import "../styles/Card.css";
 import logo from "../assets/acf-logo.png";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({
     offer,
@@ -11,8 +12,9 @@ const Card = ({
     showContractType = false,
     showLocation = false,
 }) => {
+    const navigate = useNavigate();
     return (
-        <div className="card">
+ <div className="card" onClick={() => navigate(`/offers/${offer.id}`)}>
             {showContractType && offer?.contractType && (
                 <div className="card__contract-badge">{offer.contractType}</div>
             )}

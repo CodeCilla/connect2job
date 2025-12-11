@@ -170,7 +170,7 @@ const Profile = () => {
     }, [profile, isStudent]);
 
     if (loading) {
-        return <LoadingSpinner message="Chargement du profil..." />;
+        return <LoadingSpinner message="Chargement du profil..." fullScreen />;
     }
 
     const tabs = isStudent
