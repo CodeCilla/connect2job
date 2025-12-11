@@ -36,6 +36,20 @@ Cypress.Commands.add('loginAsCompany', () => {
   window.localStorage.setItem('user', JSON.stringify(companyUser));
 });
 
+// Commande pour simuler une connexion en tant qu'entreprise sans offres
+Cypress.Commands.add('loginAsCompanyNoOffers', () => {
+  const companyUser = {
+    id: 3,
+    email: 'companynooffers@test.com',
+    role: 'COMPANY',
+    name: 'Entreprise Sans Offres'
+  };
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MGIwMDY0Yy1iOGQwLTRlNzItOGE1MS1mOWUzMDJjM2ZhYzMiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDYwMzg5LCJleHAiOjE3NjYwNjUxODl9.HGDdobxQFbtzo6OyR05zsNEZifBJgP0ddPiLEzq0HrM'
+
+    window.localStorage.setItem('token', token);
+  window.localStorage.setItem('user', JSON.stringify(companyUser));
+});
+
 // Commande pour déconnecter l'utilisateur
 Cypress.Commands.add('logout', () => {
   window.localStorage.removeItem('token');
