@@ -18,7 +18,6 @@
   position: relative;
 }
 
-
 /* --- Contenu Principal --- */
 .app-card__content {
   flex: 1;
@@ -72,7 +71,7 @@
   color: #4b5563;
   font-size: 0.95rem;
   line-height: 1.5;
-  overflow: hidden; 
+  overflow: hidden;
   overflow-wrap: break-word;
 }
 
@@ -97,14 +96,21 @@
 .app-card__actions {
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-end;
+  gap: 10px;
+}
+
+.app-card__buttons {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
 }
 
 /* --- Badge de Statut (Style Bouton arrondi) --- */
 .status-badge-pill {
   padding: 0.5rem 1.5rem;
-  border-radius: 9999px; 
+  border-radius: 9999px;
   font-weight: 600;
   font-size: 0.9rem;
   color: white;
@@ -141,7 +147,7 @@
 @media (min-width: 768px) {
   /* Layout de la carte : Logo à gauche, contenu à droite */
   .app-card {
-    flex-direction: row; 
+    flex-direction: row;
     align-items: flex-start;
     gap: 1.5rem;
   }
