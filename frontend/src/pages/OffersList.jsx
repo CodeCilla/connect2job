@@ -3,6 +3,7 @@ import { useOffers } from '../hooks/useOffers';
 import Card from '../components/Card';
 import OffersFilters from '../components/OffersFilters';
 import '../styles/OffersList.css';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function OffersList() {
   const { offers, loading, error } = useOffers();
@@ -27,9 +28,9 @@ export default function OffersList() {
     setFilters(newFilters);
   };
 
-  if (loading) return <p>Loading offers…</p>;
+  if (loading) return <LoadingSpinner message="Chargement du profil..." fullScreen />;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
-  if (!offers.length) return <p>No offers yet.</p>;
+  if (!offers.length) return <p>Aucune offres trouvées.</p>;
 
   return (
     <div className="OffersPageWrapper">
