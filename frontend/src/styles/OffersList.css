@@ -1,0 +1,125 @@
+.OffersPageWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: "Inter", sans-serif;
+}
+
+.OffersPageWrapper h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  color: var(--color-primary);
+}
+
+.OffersPageWrapper p {
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* === LAYOUT MOBILE (par défaut) === */
+.OffersLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* === BLOC FILTRES === */
+.FiltersOffers {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  width: 100%;
+  order: 1;
+}
+
+/* === LISTE DES OFFRES === */
+.OffersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  order: 2;
+  width: 100%;
+}
+
+/* === TABLETTE (768px et plus) === */
+@media (min-width: 768px) {
+  .OffersPageWrapper {
+    padding: 1.5rem;
+  }
+
+  .OffersPageWrapper h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .OffersPageWrapper p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .OffersLayout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .FiltersOffers {
+    padding: 1.5rem;
+    position: sticky;
+    top: 20px;
+    order: 1;
+  }
+
+  .OffersList {
+    gap: 1rem;
+    order: 2;
+  }
+}
+
+/* === DESKTOP (1024px et plus) === */
+@media (min-width: 1024px) {
+  .OffersPageWrapper {
+    padding: 2rem;
+  }
+
+  .OffersPageWrapper h1 {
+    font-size: 2rem;
+  }
+
+  .OffersLayout {
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+  }
+
+  .FiltersOffers {
+    padding: 1.5rem;
+  }
+
+  .OffersList {
+    gap: 1.5rem;
+  }
+}
+
+/* === GRAND ÉCRAN (1400px et plus) === */
+@media (min-width: 1400px) {
+  .OffersLayout {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+/* === AJUSTEMENTS DES CARTES DANS LA LISTE === */
+.OffersList .card {
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .OffersList .card {
+    max-width: 100%;
+  }
+}

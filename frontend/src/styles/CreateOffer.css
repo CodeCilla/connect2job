@@ -1,0 +1,25 @@
+.create-offer-page {
+    min-height: calc(100vh - 200px);
+    padding: var(--space-6);
+    background: var(--color-bg);
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+.create-offer-page .tab-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-bg);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+}
+
+@media (max-width: 768px) {
+    .create-offer-page {
+        padding: var(--space-4);
+    }
+
+    .create-offer-page .tab-content {
+        padding: var(--space-4);
+    }
+}

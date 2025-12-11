@@ -1,7 +1,7 @@
 // Configuration de l'API
 export const API_CONFIG = {
   BASE_URL: 'https://ekod-dev-interface-tp4-backend-production.up.railway.app',
-  GROUP: 'mon-groupe-est-le-meilleur', // TODO: Changez cela selon votre groupe (group1, group2, group3) exemple : GROUP: 'group1',
+  GROUP: 'group1', // TODO: Changez cela selon votre groupe (group1, group2, group3) exemple : GROUP: 'group1',
   TIMEOUT: 10000,
 };
 

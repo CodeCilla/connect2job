@@ -34,9 +34,15 @@ api.interceptors.response.use(
 
       // Si token invalide ou expiré, rediriger vers login
       if (error.response.status === 401) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.location.href = '/login';
+        const isAuthEndpoint = error.config?.url?.includes('/auth/login') || 
+                               error.config?.url?.includes('/auth/register');
+        
+        if (!isAuthEndpoint) {
+          // Seulement rediriger si ce n'est pas une tentative de connexion/inscription
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.location.href = '/login';
+        }
       }
 
       return Promise.reject({

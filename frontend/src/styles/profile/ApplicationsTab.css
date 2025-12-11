@@ -1,0 +1,163 @@
+/* --- Container global --- */
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* --- La Carte (Card) - Base Mobile --- */
+.app-card {
+  display: flex;
+  flex-direction: column; /* Mobile: empilé */
+  background: #fff;
+  border: var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+/* --- Contenu Principal --- */
+.app-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* --- Header de la carte --- */
+.app-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.app-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.app-card-company {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.app-card__date {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+/* --- Métadonnées (Lieu, Type) --- */
+.app-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.app-card__meta--item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* --- Description --- */
+.app-card__description {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+/* --- Tags (Pills) --- */
+.app-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto; /* Pousse vers le bas si la carte est haute */
+}
+
+.app-card__tags--pill {
+  background-color: #e5e7eb;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* --- Statut / Actions (Coin droit ou bas) - Base Mobile --- */
+.app-card__actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.app-card__buttons {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+}
+
+/* --- Badge de Statut (Style Bouton arrondi) --- */
+.status-badge-pill {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+/* Couleurs spécifiques */
+.status-refused {
+  background-color: #ef4444;
+}
+.status-accepted {
+  background-color: #10b981;
+}
+.status-review {
+  background-color: #f59e0b;
+}
+.status-received {
+  background-color: #3b82f6;
+}
+
+/* --- Select pour l'entreprise --- */
+.status-select-card {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background-color: white;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   MEDIA QUERIES (Desktop / Tablet)
+   ========================================= */
+@media (min-width: 768px) {
+  /* Layout de la carte : Logo à gauche, contenu à droite */
+  .app-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .app-card__actions {
+    margin-top: 0;
+    margin-left: auto; /* Pousse à droite sur desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 100px; /* Pour aligner le bouton en bas */
+  }
+}

@@ -1,0 +1,23 @@
+.btn {
+  /* ... tes styles de structure existants ... */
+  font-family: var(--font-family);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+
+  /* --- Couleurs --- */
+  background-color: var(--dynamic-bg);
+  color: var(--dynamic-text);
+
+  /* --- Modification ici : La bordure est maintenant dynamique --- */
+  border: var(--dynamic-border, none);
+
+  transition: all 0.2s ease;
+}
+.btn-icon {
+  margin-left: 1rem;
+}
+
+/* Optionnel : tu peux garder ton hover global */
+.btn:hover {
+  opacity: 0.9;
+}

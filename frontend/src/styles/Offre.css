@@ -1,0 +1,152 @@
+.button__offre {
+    display: flex;
+    justify-content: start;
+    padding: var(--space-5);
+}
+
+.company {
+    margin: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    border: var(--border);
+}
+
+.company__statut {
+    display: flex;
+    justify-content: end;
+}
+
+.company__title {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.company__title img {
+    width: var(--space-10);
+    height: var(--space-10);
+    margin-right: var(--space-5);
+}
+
+.company__title h2 {
+    overflow-wrap: anywhere;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-title);
+}
+
+.company__description {
+    margin-bottom: var(--space-5);
+}
+
+.company__location {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.company__location h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.company__location-location {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+.offre {
+    margin: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    border: var(--border);
+    background: var(--color-bg);
+    word-break: break-word;
+}
+
+.offre h2 {
+    margin-bottom: var(--space-5);
+}
+
+.offre-page {
+    min-height: calc(100vh - 200px);
+    padding: var(--space-4);
+    background: var(--color-bg);
+    margin-top: 42px;
+    margin-bottom: 42px;
+}
+
+.contract-badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    background: var(--color-secondary);
+    color: var(--color-bg);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.offre__keywords {
+    margin: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    border: var(--border);
+    background: var(--color-bg);
+}
+
+.offre__keywords h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-title);
+}
+
+.keywords-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.keyword-tag {
+    padding: var(--space-1) var(--space-3);
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin: var(--space-5);
+}
+
+@media (max-width: 768px) {
+    .offre-page {
+        padding: var(--space-3);
+    }
+
+    .company,
+    .offre,
+    .offre__keywords {
+        margin: var(--space-3);
+        padding: var(--space-4);
+    }
+
+    .company__location {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+    }
+}
