@@ -85,10 +85,26 @@ describe('Page Login', () => {
             cy.get('.info-form').should('be.visible');
         });
 
-        it('devrait afficher les candidatures recues pour une offre spécifique', () => {
-            cy.get('.tab-list').contains('Candidatures reçues').click();
-            cy.get('.offer-item').first().click();
-            cy.get('.applications-for-offer').should('be.visible');
+        it('devrait permettre a l\'entreprise de créer une nouvelle offre', () => {
+            cy.get('.tab-list').contains('Mes offres').click();
+            cy.get('button').contains('Créer une offre').click();
+            cy.url().should('include', '/create');
+        });
+
+        it('devrait permettre a l\'entreprise de gérer ces offres', () => {
+            cy.get('.tab-list').contains('Mes offres').click();
+            cy.get('.card__actions').first().within(() => {
+                cy.get('button').contains('Modifier').click();
+            });
+            cy.get('.offer-form').should('be.visible');
+        });
+
+        it ('devrait permettre a l\'entreprise de supprimer une offre', () => {
+            cy.get('.tab-list').contains('Mes offres').click();
+            cy.get('.card__actions').first().within(() => {
+                cy.get('button').contains('Supprimer').click();
+            });
+            cy.get('.offers-list').should('be.visible');
         });
     });
 
