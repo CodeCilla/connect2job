@@ -35,6 +35,10 @@
     margin-bottom: var(--space-5);
 }
 
+.card__title > h2 {
+    overflow-wrap: anywhere;
+}
+
 .card__title img {
     width: var(--space-10);
     height: var(--space-10);
