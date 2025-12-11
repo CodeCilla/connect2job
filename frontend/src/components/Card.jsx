@@ -9,19 +9,32 @@ const Card = ({
   showActions = false,
   onEdit,
   onDelete,
-  showContractType = false,
   showLocation = false,
 }) => {
   const navigate = useNavigate();
+  
+  const handleCardClick = () => {
+    if (!showActions) {
+      navigate(`/offers/${offer.id}`);
+    }
+  };
+
+  const handleEditClick = (e) => {
+    e.stopPropagation(); 
+    onEdit(offer);
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation(); 
+    onDelete(offer?.id);
+  };
+
+  const isClickable = !showActions;
+  
   return (
-    <div className="card" onClick={() => navigate(`/offers/${offer.id}`)}>
-      <div className="card__top-right">
-        {showContractType && offer?.contractType && (
-          <div className="card__contract-badge">{offer.contractType}</div>
-        )}
-        <div className="company__status">
-          <span className="contract-badge">{offer.contractType}</span>
-        </div>
+    <div className={`card ${isClickable ? 'card--clickable' : ''}`} onClick={handleCardClick}>
+      <div className="card__badge-container">
+        <span className="contract-badge">{offer.contractType}</span>
       </div>
       <div className="card__body">
         <div className="card__title">
@@ -29,10 +42,9 @@ const Card = ({
           <h2>{offer?.title}</h2>
         </div>
         <div className="card__info">
-          {offer?.company?.name && <h3>{offer.company.name}</h3>}
-          {offer?.company?.location && <h3>{offer.company.location}</h3>}
-          {!offer?.company && showLocation && offer?.location && (
-            <h3>{offer.location}</h3>
+          {offer?.company?.name && <h3 className="card__company-name">{offer.company.name}</h3>}
+          {(offer?.location || offer?.company?.location) && (
+            <h3 className="card__location">{offer?.location || offer?.company?.location}</h3>
           )}
         </div>
         {showActions && offer?._count?.applications !== undefined && (
@@ -53,11 +65,11 @@ const Card = ({
         )}
       </div>
       {showActions && (
-        <div className="card__actions">
+        <div className="card__actions" onClick={(e) => e.stopPropagation()}>
           {onEdit && (
             <Button
               text="Modifier"
-              onClick={() => onEdit(offer)}
+              onClick={handleEditClick}
               bgColor="var(--color-primary)"
               textColor="#fff"
             />
@@ -65,7 +77,7 @@ const Card = ({
           {onDelete && (
             <Button
               text="Supprimer"
-              onClick={() => onDelete(offer?.id)}
+              onClick={handleDeleteClick}
               bgColor="#fee2e2"
               textColor="#dc2626"
             />

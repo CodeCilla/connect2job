@@ -14,9 +14,9 @@ const OffersFilters = ({ onFilter }) => {
 
   const contractOptions = [
     { id: 'CDI', label: 'CDI' },
-    { id: 'Stage', label: 'Stage' },
-    { id: 'Alternance', label: 'Alternance' },
-    { id: 'Freelance', label: 'Freelance' },
+    { id: 'CDD', label: 'CDD' },
+    { id: 'STAGE', label: 'Stage' },
+    { id: 'ALTERNANCE', label: 'Alternance' },
   ];
 
   // Gestion du clic extérieur
@@ -77,7 +77,6 @@ const OffersFilters = ({ onFilter }) => {
       {/* 1. RECHERCHE */}
       <div className='filter__search'>
         <label className='filter__label' htmlFor="keyword">Recherche par mots-clés</label>
-        <i className='fa-solid fa-magnifying-glass input-icon filter__icon'></i>
         <input
           type='text'
           name='keyword'
@@ -92,7 +91,6 @@ const OffersFilters = ({ onFilter }) => {
       {/* 2. LOCALISATION */}
       <div className='filter__search'>
         <label className='filter__label' htmlFor="location">Recherche par ville</label>
-        <i className='fa-solid fa-location-dot input-icon filter__icon'></i>
         <input
           type='text'
           name='location'

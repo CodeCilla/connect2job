@@ -15,7 +15,6 @@
 
 .profile-header {
     display: flex;
-    width: 100%;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -371,6 +370,10 @@
     margin-top: var(--space-4);
 }
 
+.offers-list > .card {
+    width: 400px;
+}
+
 .error-message {
     background: #fee2e2;
     color: #dc2626;
@@ -394,7 +397,7 @@
     }
 
     .profile-header {
-        width: 30%;
+        min-width: 30%;
     }
 
     .tab-list li {
@@ -416,5 +419,9 @@
     .tab-list {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .offers-list > .card {
+        width: auto;
     }
 }
