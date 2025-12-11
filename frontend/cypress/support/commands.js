@@ -11,12 +11,12 @@
 // Commande pour simuler une connexion en tant qu'étudiant
 Cypress.Commands.add('loginAsStudent', () => {
   const studentUser = {
-    id: 1,
-    email: 'student@test.com',
+    email: 'user@example.com',
     role: 'STUDENT',
-    name: 'Étudiant Test'
+    name: 'teste',
+    password: 'string'
   };
-  const token = 'mock-student-token';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhODg2Y2UzMC05ZTY1LTQ3MDUtYjRiYS02ODJhNGEzYjIyYjIiLCJyb2xlIjoiU1RVREVOVCIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDUwNjkzLCJleHAiOjE3NjYwNTU0OTN9.UlYvnhYqZtI-aWGFm8NpqjyITcVy_CQH8eCqaDIoHDo';
   
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(studentUser));
@@ -30,7 +30,7 @@ Cypress.Commands.add('loginAsCompany', () => {
     role: 'COMPANY',
     name: 'Entreprise Test'
   };
-  const token = 'mock-company-token';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2MwMTYwNS02NjQ1LTQ2MjktODQxNi1jMzRkZDMyM2FhNjQiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDUwOTAzLCJleHAiOjE3NjYwNTU3MDN9.Ulk_WiI141rsuB1xGMqX8WYjAR3ZPIPd7HhezzmnwSc';
   
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(companyUser));
