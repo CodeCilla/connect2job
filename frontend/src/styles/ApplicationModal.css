@@ -176,6 +176,22 @@
     font-size: 0.9rem;
 }
 
+.cover-letter-readonly {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    line-height: 1.6;
+    min-height: 200px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
 @media (max-width: 768px) {
     .modal-overlay {
         padding: var(--space-2);

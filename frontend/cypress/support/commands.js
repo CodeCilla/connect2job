@@ -11,8 +11,7 @@
 // Commande pour simuler une connexion en tant qu'étudiant
 Cypress.Commands.add('loginAsStudent', () => {
   const studentUser = {
-    id: 1,
-    email: 'student@test.com',
+    email: 'user@example.com',
     role: 'STUDENT',
     name: 'Étudiant Test',
   };
@@ -35,6 +34,20 @@ Cypress.Commands.add('loginAsCompany', () => {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZWMxNDdiZS1jYWMzLTQ3MTItOTFmMS01NzA5MWJmNDllNTgiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDUxODMwLCJleHAiOjE3NjYwNTY2MzB9.gsTXGYrzNMzMY3x-IWu13uP915WjlvKCnJR2RzFWcFU';
 
   window.localStorage.setItem('token', token);
+  window.localStorage.setItem('user', JSON.stringify(companyUser));
+});
+
+// Commande pour simuler une connexion en tant qu'entreprise sans offres
+Cypress.Commands.add('loginAsCompanyNoOffers', () => {
+  const companyUser = {
+    id: 3,
+    email: 'companynooffers@test.com',
+    role: 'COMPANY',
+    name: 'Entreprise Sans Offres'
+  };
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MGIwMDY0Yy1iOGQwLTRlNzItOGE1MS1mOWUzMDJjM2ZhYzMiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDYwMzg5LCJleHAiOjE3NjYwNjUxODl9.HGDdobxQFbtzo6OyR05zsNEZifBJgP0ddPiLEzq0HrM'
+
+    window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(companyUser));
 });
 

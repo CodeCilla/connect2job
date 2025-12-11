@@ -3,13 +3,13 @@
 /* GLOBAL HEADER */
 .header {
   display: flex;
-  justify-content: center; /* center logo on mobile */
+  justify-content: space-between; /* space between left and right */
   align-items: center;
   background-color: var(--color-bg);
-  padding: var(--space-6);
+  padding: var(--space-4) var(--space-6);
   border-bottom: var(--border);
   position: relative;
-  height: 4rem;
+  min-height: 4rem;
 }
 
 /* LEFT SIDE: hamburger + logo */
@@ -130,20 +130,33 @@
   color: var(--color-secondary);
 }
 
+/* RIGHT SIDE - MOBILE */
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 /* MOBILE AUTH BUTTONS */
 .mobile-buttons {
   display: flex;
-  flex-direction: column;
-  right: var(--space-4);
-  position: absolute;
-  gap: var(--space-4);
-  top: var(--space-4);
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.mobile-buttons img {
-  max-width: 4rem;
-  max-height: 4rem;
-  border-radius: var(--radius-sm);
+.mobile-buttons .button-header {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-profile-image {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
 }
 
 /* DESKTOP AUTH BUTTONS */

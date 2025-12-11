@@ -72,7 +72,7 @@ const Home = () => {
                                 />
                                 <Button
                                     text="Mes offres"
-                                    onClick={() => navigate("/my-offers")}
+                                    onClick={() => navigate("/profile")}
                                     bgColor="#FBF3EA"
                                     textColor="var(--color-secondary)"
                                 />

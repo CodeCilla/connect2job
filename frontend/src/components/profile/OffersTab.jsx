@@ -77,14 +77,13 @@ const OffersTab = () => {
                 </button>
             </div>
             {offers && offers.length > 0 ? (
-                <div className="offers-grid">
+                <div className="offers-list">
                     {offers.map((offer) => (
                         <Card
                             key={offer.id}
                             offer={offer}
                             showKeywords={false}
                             showActions={true}
-                            showContractType={true}
                             showLocation={true}
                             onEdit={handleEdit}
                             onDelete={handleDelete}

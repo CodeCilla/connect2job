@@ -17,7 +17,7 @@ export default function OffersList() {
   const filteredOffers = offers.filter((offer) => {
     const keywordMatch = offer.title.toLowerCase().includes(filters.keyword.toLowerCase()) ||
                          offer.description.toLowerCase().includes(filters.keyword.toLowerCase());
-    const locationMatch = offer.company?.location.toLowerCase().includes(filters.location.toLowerCase()) ||
+    const locationMatch = offer.company?.location?.toLowerCase().includes(filters.location.toLowerCase()) ||
                           offer.location.toLowerCase().includes(filters.location.toLowerCase());
     const contractTypeMatch = filters.contractTypes.length === 0 || filters.contractTypes.includes(offer.contractType);
 

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button.jsx";
 import "../styles/Header.css";
 import { useAuth } from "../hooks/useAuth.jsx";
+import profileImage from "../assets/profile.jpg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ const Header = () => {
               }`}
               onClick={() => handleNavigate("/profile")}
             >
-              <i className="fa-solid fa-user fa-2xl"></i>
+              <img src={profileImage} alt="User Profile" className="mobile-profile-image" />
             </button>
           ) : (
             <>
@@ -146,7 +147,7 @@ const Header = () => {
               }`}
               onClick={() => handleNavigate("/profile")}
             >
-              <img src="/src/assets/profile.jpg" alt="User Profile" className="profile-image" />
+              <img src={profileImage} alt="User Profile" className="profile-image" />
             </button>
           )}
 
