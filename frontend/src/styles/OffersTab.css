@@ -30,7 +30,8 @@
 
 .offers-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: var(--space-5);
     margin-top: var(--space-6);
     margin-bottom: var(--space-6);
