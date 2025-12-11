@@ -22,7 +22,7 @@ describe('Page Login', () => {
 
         it('devrait afficher les informations du profil étudiant', () => {
             cy.get('.profile-header').should('be.visible');
-            cy.get('h2').should('contain', 'teste');
+            cy.get('h2').should('contain', 'Étudiant Un group1');
             cy.get('h4').should('contain', 'Étudiant');
         });
 
@@ -55,7 +55,7 @@ describe('Page Login', () => {
 
         it('devrait afficher les informations du profil entreprise', () => {
             cy.get('.profile-header').should('be.visible');
-            cy.get('h2').should('contain', 'Entreprise Test');
+            cy.get('h2').should('contain', 'TechCorp group1');
             cy.get('h4').should('contain', 'Entreprise');
         });
 

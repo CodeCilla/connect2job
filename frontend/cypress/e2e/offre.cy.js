@@ -33,25 +33,30 @@ describe('Page Offre', () => {
                 location: 'Paris',
                 keywords: ['React', 'Node.js', 'TypeScript']
             }).then((offer) => {
-                createdOfferId = offer.id || offer.offer?.id;
+                createdOfferId = offer.id || offer.offer?.id || offer.offerId;
                 cy.logout();
+                cy.loginAsStudent();
             });
-            
-            cy.loginAsStudent();
         });
 
         describe('Chargement de l\'offre', () => {
             it('devrait afficher le spinner de chargement', () => {
-                cy.visit(`/offers/${createdOfferId}`);
-                cy.contains('Chargement de l\'offre...').should('be.visible');
+                cy.then(() => {
+                    expect(createdOfferId).to.not.be.null;
+                    cy.visit(`/offers/${createdOfferId}`);
+                    cy.contains('Chargement de l\'offre...').should('be.visible');
+                });
             });
         });
 
         describe('Affichage de l\'offre', () => {
             beforeEach(() => {
-                cy.visit(`/offers/${createdOfferId}`);
-                // Attendre que l'offre soit chargée
-                cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
+                cy.then(() => {
+                    expect(createdOfferId).to.not.be.null;
+                    cy.visit(`/offers/${createdOfferId}`);
+                    // Attendre que l'offre soit chargée
+                    cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
+                });
             });
 
             it('devrait afficher le bouton Retour', () => {
@@ -94,9 +99,12 @@ describe('Page Offre', () => {
 
         describe('Modal de candidature', () => {
             beforeEach(() => {
-                cy.visit(`/offers/${createdOfferId}`);
-                // Attendre que l'offre soit chargée
-                cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
+                cy.then(() => {
+                    expect(createdOfferId).to.not.be.null;
+                    cy.visit(`/offers/${createdOfferId}`);
+                    // Attendre que l'offre soit chargée
+                    cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
+                });
             });
 
             it('devrait ouvrir la modal quand on clique sur Postuler', () => {
@@ -205,18 +213,21 @@ describe('Page Offre', () => {
 
         describe('Gestion des erreurs', () => {
             it('devrait afficher une erreur si la candidature échoue', () => {
-                cy.visit(`/offers/${createdOfferId}`);
-                cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
-                cy.contains('button', 'Postuler').click();
-                cy.get('textarea#coverLetter').type('Ma lettre');
-                // Intercepter pour forcer une erreur
-                cy.intercept('POST', '**/applications', {
-                    statusCode: 400,
-                    body: { error: 'Erreur lors de l\'envoi de la candidature' }
-                }).as('submitError');
-                cy.contains('button', 'Envoyer ma candidature').click();
-                cy.wait('@submitError');
-                cy.get('.error-message').should('be.visible');
+                cy.then(() => {
+                    expect(createdOfferId).to.not.be.null;
+                    cy.visit(`/offers/${createdOfferId}`);
+                    cy.contains('Développeur Full Stack', { timeout: 10000 }).should('be.visible');
+                    cy.contains('button', 'Postuler').click();
+                    cy.get('textarea#coverLetter').type('Ma lettre');
+                    // Intercepter pour forcer une erreur
+                    cy.intercept('POST', '**/applications', {
+                        statusCode: 400,
+                        body: { error: 'Erreur lors de l\'envoi de la candidature' }
+                    }).as('submitError');
+                    cy.contains('button', 'Envoyer ma candidature').click();
+                    cy.wait('@submitError');
+                    cy.get('.error-message').should('be.visible');
+                });
             });
         });
 
@@ -233,10 +244,10 @@ describe('Page Offre', () => {
                     location: 'Paris',
                     keywords: []
                 }).then((offer) => {
-                    offerWithoutKeywordsId = offer.id || offer.offer?.id;
+                    offerWithoutKeywordsId = offer.id || offer.offer?.id || offer.offerId;
                     cy.logout();
+                    cy.loginAsStudent();
                 });
-                cy.loginAsStudent();
             });
 
             afterEach(() => {

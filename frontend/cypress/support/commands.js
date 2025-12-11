@@ -45,9 +45,9 @@ Cypress.Commands.add('loginAsCompanyNoOffers', () => {
     role: 'COMPANY',
     name: 'Entreprise Sans Offres'
   };
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MGIwMDY0Yy1iOGQwLTRlNzItOGE1MS1mOWUzMDJjM2ZhYzMiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDYwMzg5LCJleHAiOjE3NjYwNjUxODl9.HGDdobxQFbtzo6OyR05zsNEZifBJgP0ddPiLEzq0HrM'
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MGIwMDY0Yy1iOGQwLTRlNzItOGE1MS1mOWUzMDJjM2ZhYzMiLCJyb2xlIjoiQ09NUEFOWSIsImdyb3VwIjoiZ3JvdXAxIiwiaWF0IjoxNzY1NDYwMzg5LCJleHAiOjE3NjYwNjUxODl9.HGDdobxQFbtzo6OyR05zsNEZifBJgP0ddPiLEzq0HrM';
 
-    window.localStorage.setItem('token', token);
+  window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(companyUser));
 });
 
@@ -55,4 +55,42 @@ Cypress.Commands.add('loginAsCompanyNoOffers', () => {
 Cypress.Commands.add('logout', () => {
   window.localStorage.removeItem('token');
   window.localStorage.removeItem('user');
+});
+
+Cypress.Commands.add('createOffer', (offerData) => {
+    const token = window.localStorage.getItem('token');
+    const baseUrl = Cypress.env('API_BASE_URL') || 'https://ekod-dev-interface-tp4-backend-production.up.railway.app/api/group1';
+    
+    return cy.request({
+      method: 'POST',
+      url: `${baseUrl}/companies/offers`,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: offerData || {
+        title: 'Offre de test Cypress',
+        description: 'Description de test pour les tests Cypress',
+        contractType: 'CDI',
+        location: 'Paris',
+        keywords: ['React', 'Node.js', 'TypeScript']
+      }
+    }).then((response) => {
+      return response.body.offer || response.body;
+    });
+  });
+  
+// Commande pour supprimer une offre
+Cypress.Commands.add('deleteOffer', (offerId) => {
+  const token = window.localStorage.getItem('token');
+  const baseUrl = Cypress.env('API_BASE_URL') || 'https://ekod-dev-interface-tp4-backend-production.up.railway.app/api/group1';
+  
+  return cy.request({
+    method: 'DELETE',
+    url: `${baseUrl}/companies/offers/${offerId}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
+    failOnStatusCode: false
+  });
 });
