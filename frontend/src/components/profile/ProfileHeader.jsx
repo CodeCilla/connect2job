@@ -1,4 +1,4 @@
-import ProfilePicture from '../../assets/profile.jpg';
+import ProfilePicture from '/images/profile.jpg';
 import Button from '../Button';
 
 const ProfileHeader = ({ profile, isStudent, onLogout }) => {
