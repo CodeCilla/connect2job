@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useApplications } from '../../hooks/useApplications';
 import { useAuth } from '../../hooks/useAuth';
+import LoadingSpinner from '../LoadingSpinner';
+import ApplicationModal from '../ApplicationModal';
 import Button from '../Button'; // Plus besoin du bouton ici, on fait un lien propre
 import '../../styles/profile/ApplicationsTab.css';
 
@@ -36,7 +39,9 @@ const ApplicationCard = ({
   isStudent,
   isCompany,
   onUpdateStatus,
+  onShowCoverLetter,
 }) => {
+  const navigate = useNavigate();
   const { offer, student, status, createdAt, coverLetter } = application;
 
   // --- LOGIQUE D'AFFICHAGE --- //
@@ -152,9 +157,13 @@ const ApplicationCard = ({
 
             return (
               <Button
-                onClick={() =>
-                  window.open(targetLink, '_blank', 'noopener,noreferrer')
-                }
+                onClick={() => {
+                  if (isCompany) {
+                    window.open(targetLink, '_blank', 'noopener,noreferrer');
+                  } else {
+                    navigate(targetLink);
+                  }
+                }}
                 text={buttonText}
                 bgColor='var( --color-bg-alt)'
                 textColor='var(--color-primary)'
@@ -163,9 +172,7 @@ const ApplicationCard = ({
           })()}
           {isCompany && coverLetter && (
             <Button
-              onClick={() =>
-                window.open(coverLetter, '_blank', 'noopener,noreferrer')
-              }
+              onClick={() => onShowCoverLetter(coverLetter, student?.name)}
               text='Lettre de motivation'
               bgColor='var( --color-bg-alt)' /* Fond blanc pour différencier */
               textColor='var(--color-primary)' /* Texte couleur primaire */
@@ -183,8 +190,29 @@ const ApplicationCard = ({
 const ApplicationsTab = () => {
   const { isStudent, isCompany } = useAuth();
   const { applications, loading, error, updateStatus } = useApplications();
+  const [isCoverLetterModalOpen, setIsCoverLetterModalOpen] = useState(false);
+  const [selectedCoverLetter, setSelectedCoverLetter] = useState('');
+  const [selectedStudentName, setSelectedStudentName] = useState('');
 
-  if (loading) return <div className='loading-state'>Chargement...</div>;
+  const handleShowCoverLetter = (coverLetter, studentName) => {
+    setSelectedCoverLetter(coverLetter);
+    setSelectedStudentName(studentName || '');
+    setIsCoverLetterModalOpen(true);
+  };
+
+  const handleCloseCoverLetterModal = () => {
+    setIsCoverLetterModalOpen(false);
+    setSelectedCoverLetter('');
+    setSelectedStudentName('');
+  };
+
+  if (loading) {
+    return (
+        <div className="tab-content">
+            <LoadingSpinner message="Chargement des candidatures..." />
+        </div>
+    );
+}
   if (error) return <div className='error-state'>Erreur : {error}</div>;
 
   return (
@@ -201,10 +229,18 @@ const ApplicationsTab = () => {
               isStudent={isStudent}
               isCompany={isCompany}
               onUpdateStatus={updateStatus}
+              onShowCoverLetter={handleShowCoverLetter}
             />
           ))
         )}
       </div>
+      <ApplicationModal
+        isOpen={isCoverLetterModalOpen}
+        onClose={handleCloseCoverLetterModal}
+        readOnly={true}
+        coverLetterText={selectedCoverLetter}
+        studentName={selectedStudentName}
+      />
     </div>
   );
 };

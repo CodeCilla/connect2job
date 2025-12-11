@@ -3,7 +3,15 @@ import { useApplications } from "../hooks/useApplications";
 import LoadingSpinner from "./LoadingSpinner";
 import "../styles/ApplicationModal.css";
 
-const ApplicationModal = ({ isOpen, onClose, offerId, offerTitle }) => {
+const ApplicationModal = ({ 
+    isOpen, 
+    onClose, 
+    offerId, 
+    offerTitle, 
+    readOnly = false, 
+    coverLetterText = "",
+    studentName = ""
+}) => {
     const { submitApplication, loading } = useApplications(false);
     const [coverLetter, setCoverLetter] = useState("");
     const [error, setError] = useState(null);
@@ -42,14 +50,36 @@ const ApplicationModal = ({ isOpen, onClose, offerId, offerTitle }) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <h2>
-                        Postuler à l'offre : <strong>{offerTitle}</strong>
+                        {readOnly ? (
+                            <>Lettre de motivation{studentName && <strong> - {studentName}</strong>}</>
+                        ) : (
+                            <>Postuler à l'offre : <strong>{offerTitle}</strong></>
+                        )}
                     </h2>
                     <button className="modal-close" onClick={handleClose}>
                         ×
                     </button>
                 </div>
                 <div className="modal-body">
-                    {success ? (
+                    {readOnly ? (
+                        <div className="form-field">
+                            <label htmlFor="coverLetter">
+                                Lettre de motivation
+                            </label>
+                            <div className="cover-letter-readonly">
+                                {coverLetterText || "Aucune lettre de motivation disponible."}
+                            </div>
+                            <div className="modal-actions">
+                                <button
+                                    type="button"
+                                    className="btn-cancel"
+                                    onClick={handleClose}
+                                >
+                                    Fermer
+                                </button>
+                            </div>
+                        </div>
+                    ) : success ? (
                         <div className="success-message">
                             <p>Votre candidature a été envoyée avec succès !</p>
                         </div>
